@@ -93,7 +93,7 @@ class RegistrationForm(forms.ModelForm):
         fields = [
                     'name', 'phone','your_work','college_email',
                     'student_number','branch','year','roll_no',
-                    'gender','skills', 'github_username', 'is_hosteler','captcha'
+                    'gender','skills', 'github_username', 'is_hosteler','domain','captcha'
                 ]
 
     def __init__(self, *args, **kwargs):
@@ -204,19 +204,19 @@ class RegistrationForm(forms.ModelForm):
                        }
             )
         )
-        # self.fields['domain'] = forms.ModelChoiceField(
-        #     queryset=Domain.objects.all(),
-        #     initial=Domain.objects.all().first(),
-        #     required=True,
-        #     widget=forms.Select(
-        #         attrs={'class': 'form-control',
-        #                'data-val': 'true',
-        #                'data-val-required': '*',
-        #                'id': 'domain',
-        #                'name': 'domain',
-        #                }
-        #     )
-        # )
+        self.fields['domain'] = forms.ModelChoiceField(
+            queryset=Domain.objects.all(),
+            initial=Domain.objects.all().first(),
+            required=True,
+            widget=forms.Select(
+                attrs={'class': 'form-control',
+                       'data-val': 'true',
+                       'data-val-required': '*',
+                       'id': 'domain',
+                       'name': 'domain',
+                       }
+            )
+        )
 
         self.fields['skills'] = forms.CharField(
             required=False,
