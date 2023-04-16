@@ -198,11 +198,11 @@ class Registration(models.Model):
      # Default Year is 1 for SI Workshop
     year = models.ForeignKey('Year',default=2,on_delete=models.CASCADE)
     # Registration for workshop doesn't require Domain so Null=True
-    domain = models.ForeignKey('Domain',related_name='registrations',on_delete=models.CASCADE, null=True)
+    # domain = models.ForeignKey('Domain',related_name='registrations',on_delete=models.CASCADE, null=True)
     skills = models.CharField(max_length=250,default="HTML",help_text='Skills like HTML, CSS, Java...')
     hacker_rank_username = models.CharField(max_length=250,null=True,blank=True,help_text='Your HackerRank username. Please create an account on HackerRank.')
     github_username = models.CharField(max_length=250,null=True,blank=True,help_text='Your Github username. Please create an account on Github.')
-    behance_username = models.CharField(max_length=250,null=True,blank=True,help_text='Your Behance username. Please create an account on Behance.')
+    # behance_username = models.CharField(max_length=250,null=True,blank=True,help_text='Your Behance username. Please create an account on Behance.')
     
     timestamp = models.DateTimeField(auto_now_add=True)
     event = models.ForeignKey('Event',on_delete=models.CASCADE)
