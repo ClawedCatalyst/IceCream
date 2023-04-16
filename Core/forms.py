@@ -232,7 +232,7 @@ class RegistrationForm(forms.ModelForm):
         self.fields['year'] = forms.ModelChoiceField(
             queryset=Year.objects.filter(active=True),
             initial=Year.objects.filter(active=True).first(),
-            required=False,
+            required=True,
             widget=forms.Select(
                 attrs={'class': 'form-control',
                        'data-val': 'true',
@@ -301,6 +301,11 @@ class RegistrationForm(forms.ModelForm):
         cleaned_data = super(RegistrationForm, self).clean()
 
         try:
+            student_name = cleaned_data['name']
+        except KeyError:
+            raise ValidationError("")
+        
+        try:
             student_number = cleaned_data['student_number']
         except KeyError:
             raise ValidationError("")
@@ -326,10 +331,10 @@ class RegistrationForm(forms.ModelForm):
         except (KeyError, ObjectDoesNotExist):
             raise ValidationError("")
 
-        # try:
-        #     roll_no = cleaned_data['roll_no']
-        # except KeyError:
-        #     raise ValidationError("")
+        try:
+            roll_no = cleaned_data['roll_no']
+        except KeyError:
+            raise ValidationError("")
 
 
         hacker_rank_username = cleaned_data.get('hacker_rank_username')
@@ -341,19 +346,50 @@ class RegistrationForm(forms.ModelForm):
         if hacker_rank_username:
             pattern = re.compile("^_*[a-zA-Z\\d]+[a-zA-z0-9]*$")
             if not pattern.match(str(hacker_rank_username)):
-                return ValidationError("Invalid HackerRank Username")
+                raise ValidationError("Invalid HackerRank Username")
     
         if github_username:
             pattern = re.compile("^_*[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$")
             if not pattern.match(str(github_username)):
-                return ValidationError("Invalid HackerRank Username")
+                raise ValidationError("Invalid Github Username")
         
         # if behance_username:
         #     pattern = re.compile("^([A-Za-z0-9\-\_])*$")
         #     if not pattern.match(str(behance_username)):
         #         return ValidationError("Invalid HackerRank Username")
-
-
+        year = ''
+        if str(cleaned_data['year'])[0] == '2':
+            year = '21'
+        elif str(cleaned_data['year'])[0] == '1':
+            year = '22'
+        
+        # print(str(cleaned_data['student_number'])[0:2])
+        # print(str(cleaned_data['roll_no'])[0:2])
+        
+        
+        if student_name and college_email and student_number:
+            first_name = str(student_name).split(' ')[0]
+            email_username = str(college_email).split('@')[0]
+            
+            if first_name.lower() != email_username[:len(first_name)].lower():
+                raise ValidationError("Student name doesn't match with the student name in Email.")
+            
+            if str(student_number) != email_username[len(first_name):]:
+                raise ValidationError("Student number doesn't match with the student number in Email.")
+            
+            
+        if student_number and roll_no:
+            if str(cleaned_data['student_number'])[0:2] != str(cleaned_data['roll_no'])[0:2]:
+                raise ValidationError("Roll Number Year doesn't match with Student Number Year")
+        
+        if year and student_number:
+            if year != str(cleaned_data['student_number'])[0:2]:
+                raise ValidationError("Year doesn't match with Student Number")
+            
+        if year and roll_no: 
+            if year != str(cleaned_data['roll_no'])[0:2]:
+                raise ValidationError("Year doesn't match with Roll Number")
+        
         if your_work:
             your_work = your_work.split(',')
             for link in your_work:
@@ -369,8 +405,8 @@ class RegistrationForm(forms.ModelForm):
  
         # regex_student = "^(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9](d|D|)[-]?[mdlMDL]?";
 
-        # registration for first year only
-        regex_student = "^(22|21)(((11|12|14|10|13|00|31|21|32|40|153|164)[0-9][0-9][0-9])|((154|164)[0-9][0-9]))(d|D|)[-]?[mdlMDL]?$";    
+        # registration for first and second year 
+        regex_student = "^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$";    
         pattern_student = re.compile(regex_student)
 
         if student_number:
@@ -381,7 +417,7 @@ class RegistrationForm(forms.ModelForm):
 
         # Check if college email contains the student number
         regex_college_email1= f"^[a-zA-Z]+({str(student_number)})(\@akgec\.ac\.in)$"
-        regex_college_email2= "^[a-zA-Z]+(22|21)(((11|12|14|10|13|00|31|21|32|40|153|(x|X){3})[0-9][0-9][0-9])|((154)[0-9][0-9]))(\@akgec.ac.in)$"
+        regex_college_email2= "^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$"
         pattern_college_email1= re.compile(regex_college_email1)
         pattern_college_email2= re.compile(regex_college_email2)
 
@@ -408,11 +444,14 @@ class RegistrationForm(forms.ModelForm):
             if not pattern_branch_code.match(student_number_branch_code):   
                 raise ValidationError("Student Number doesn't match that of branch code")
 
-        # regex_roll_no = "^(21)00270(15|11|12|14|10|13|00|31|21|32|40)[0-9]{4}$"
-        # pattern_roll_no = re.compile(regex_roll_no)
+        # Regex for first and second year
+        regex_roll_no = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
 
-        # if not pattern_roll_no.match(str(roll_no)):
-        #     raise ValidationError("Invalid Roll No. ")
+        # regex_roll_no = "^(21)00270(15|11|12|14|10|13|00|31|21|32|40)[0-9]{4}$"
+        pattern_roll_no = re.compile(regex_roll_no)
+
+        if not pattern_roll_no.match(str(roll_no)):
+            raise ValidationError("Invalid Roll No. ")
 
         event = Event.objects.filter(active=True).first()
         if Registration.objects.filter(college_email=college_email, event=event).exists():

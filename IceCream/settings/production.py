@@ -18,6 +18,6 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = os.path.join('/home/ubuntu', 'Assets/static')
+STATIC_ROOT = os.path.join('/home/ubuntu/projects/IceCream', 'Assets/static')
 
-MEDIA_ROOT = os.path.join('/home/ubuntu', "Assets/media")
+MEDIA_ROOT = os.path.join('/home/ubuntu/projects/IceCream', "Assets/media")
