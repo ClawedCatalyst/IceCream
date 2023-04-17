@@ -141,21 +141,21 @@
                                 <span style="color: red" class='validationerror'>{{ form.whatsapp.errors }}</span>
                             </div> -->
                             <!-- Roll no. -->
-                            <div class="md-form">
+                            <!-- <div class="md-form">
                                 <i class="far fa-id-card prefix grey-text"></i>
                                 <input type="text" id="Roll_no" name="roll_no" class="form-control">
                                 <label for="Roll_no">Roll no.</label>
                                 <span id="roll_no_err" class='validationerror'>Invalid Roll Number </span>
                                 <span style="color: red" class='validationerror'>{{ form.roll_no.errors }}</span>
-                            </div>
+                            </div> -->
                             <!-- Skills -->
-                            <div class="md-form">
+                            <!-- <div class="md-form">
                                 <i class="fa-solid fa-code prefix grey-text"></i>
                                 <input type="text" id="skills" name="skills" class="form-control">
                                 <label for="skills">Skills: HTML, CSS, Java...</label>
                                 <span id="skills_err" class='validationerror'>This field is required</span>
                                 <span style="color: red" class='validationerror'>{{ form.skills.errors }}</span>
-                            </div>
+                            </div> -->
                             <div class="md-form">
                             
                             <!--branch, year-->
@@ -174,13 +174,13 @@
                                         <span style="color: red" class='validationerror'>{{ form.branch.errors }}</span>
                                     </div>
                                     <!--choose year-->
-                                    <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-1 ">
+                                    <!-- <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-1 ">
                                         {{ form.year.label }}
                                         <div class="hoverable">{{ form.year }}</div>
                                         {% comment %} <input type="text" style="display: block; margin-top: 12px;" value="2nd Year" disabled> {% endcomment %}
                                         <span id="year_err" class='validationerror'>Invalid Year </span>
                                         <span style="color: red" class='validationerror'>{ form.year.errors }}</span>
-                                    </div>
+                                    </div> -->
                                     
                                     <!--choose experience-->
                                     <!-- <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-1 ">
@@ -188,24 +188,30 @@
                                         <div class="hoverable">{{ form.experience }}</div>
                                         <span style="color: red" class='validationerror'>{{ form.experience.errors }}</span>
                                     </div>  -->
-                                </div>
-
-                                <div class="row p-1">
-                                    
-                                    <!--choose domain-->
-                                   <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-1 ">
-                                        {{ form.domain.label }}
-                                        <div class="hoverable">{{ form.domain }}</div>
-                                        <span style="color: red" class='validationerror'>{{ form.domain.errors }}</span>
-                                    </div>  
                                     <!-- choose Hosteler -->
                                     <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-1 ">
                                         {{ form.is_hosteler.label }}
                                         <div class="hoverable" >{{ form.is_hosteler }}</div>
                                         <span style="color: red" class='validationerror'>{{ form.is_hosteler.errors }}</span>
                                     </div>
-                                    
                                 </div>
+
+                                <!-- <div class="row p-1"> -->
+                                    
+                                    <!--choose domain-->
+                                   <!-- <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-1 ">
+                                        {{ form.domain.label }}
+                                        <div class="hoverable">{{ form.domain }}</div>
+                                        <span style="color: red" class='validationerror'>{{ form.domain.errors }}</span>
+                                    </div>   -->
+                                    <!-- choose Hosteler --><!-- commented to shift hosteller field to upper row -->
+                                    <!-- <div class="col-12 col-sm-12 col-md-4 col-lg-4 p-1 ">
+                                        {{ form.is_hosteler.label }}
+                                        <div class="hoverable" >{{ form.is_hosteler }}</div>
+                                        <span style="color: red" class='validationerror'>{{ form.is_hosteler.errors }}</span>
+                                    </div> -->
+                                    
+                                <!-- </div> -->
                             </div>
                             <!-- HackerRank Username -->
                             <!-- <div class="md-form" id='hackerrank'>
@@ -226,31 +232,31 @@
                             </div> -->
                             
                             <!-- GitHub Username -->
-                            <div class="md-form" id='github'>
+                            <!-- <div class="md-form" id='github'>
                                 <i class="fa-brands fa-github prefix grey-text"></i>
                                 <input type="text" id="github_username" name="github_username" class="form-control">
                                 <label for="github_username">Github Username</label>
                                 <span id="github_username_err" class='validationerror'>Invalid Username</span>
                                 <span style="color: red" class='validationerror'>{{ form.github_username.errors }}</span>
-                            </div>
+                            </div> -->
                             
                             <!-- Behance Username -->
-                            {% comment %} <div class="md-form" id='behance'>
+                            <!-- {% comment %} <div class="md-form" id='behance'>
                                 <i class="fa-brands fa-square-behance prefix grey-text"></i>
                                 <input type="text" id="behance_username" name="behance_username" class="form-control">
                                 <label for="behance_username">Behance Username</label>
                                 <span id="behance_username_err" class='validationerror'>Invalid Username</span>
                                 <span style="color: red" class='validationerror'>{{ form.behance_username.errors }}</span>
-                            </div> {% endcomment %}
+                            </div> {% endcomment %} -->
                             
                             <!-- Your works -->
-                            <div class="md-form">
+                            <!-- <div class="md-form">
                                 <i class="fa-solid fa-link prefix grey-text"></i>
                                 <input type="text" id="your_work" name="your_work" class="form-control">
                                 <label class="long_text_label_link" for="your_work">Link to your work or coding profiles (if any)</label>
                                 <span id="your_work_err" class='validationerror'>Invalid Links</span>
                                 <span style="color: red" class='validationerror'>{{ form.your_work.errors }}</span>
-                            </div>
+                            </div> -->
                             
                           <!-- Captcha -->
                              <center>
@@ -308,7 +314,7 @@
                             <a target="_blank" href="https://akgec.ac.in/">AKGEC</a>
                         </li>
                         <li>
-                            <a target="_blank" href="http://akgec-scrolls.com/">Scrolls</a>
+                            <a target="_blank" href="https://scrollsakgec.in/">Scrolls</a>
                         </li>
                         <li>
                             <a target="_blank" href="http://bytepad.silive.in/">Bytepad</a>
@@ -453,35 +459,35 @@
     $(document).ready(function () {
         $(".validationerror").hide();
         
-        var test = $("#domain").val();
-        console.log(test);
-        if(test==1){
-            $('#behance').hide();
-            $('#github').show();}
-        else if(test==2){
-            $('#github').hide();
-            $('#behance').show();}
-        else{
-            $('#github').show();
-            $('#behance').show();
-        }
+    //     var test = $("#domain").val();
+    //     console.log(test);
+    //     if(test==1){
+    //         $('#behance').hide();
+    //         $('#github').show();}
+    //     else if(test==2){
+    //         $('#github').hide();
+    //         $('#behance').show();}
+    //     else{
+    //         $('#github').show();
+    //         $('#behance').show();
+    //     }
 
-            $("#domain").change(function(){
-            if(this.value==1){
-                $('#github').show();
-                $('#behance').hide();
-            }
-            else if(this.value==2){
-                $('#behance').show();
-                $('#github').hide();
-            }
-            else{
-                $('#github').show();
-                $('#behance').show();
-                $('#github_username').val('');
-                $('#behance_username').val('');
-            }
-        });
+    //         $("#domain").change(function(){
+    //         if(this.value==1){
+    //             $('#github').show();
+    //             $('#behance').hide();
+    //         }
+    //         else if(this.value==2){
+    //             $('#behance').show();
+    //             $('#github').hide();
+    //         }
+    //         else{
+    //             $('#github').show();
+    //             $('#behance').show();
+    //             $('#github_username').val('');
+    //             $('#behance_username').val('');
+    //         }
+    //     });
         $("#Name").focusout(function (event) {
             if (event.charCode!=0) {
                 if($(this).val()==''){
@@ -558,7 +564,10 @@
                 // var regex = new RegExp("^(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9](d|D|)[-]?[mdlMDL]?$");
 
                 // regex for registration for 1st and 2nd year
-                var regex = new RegExp("^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$")
+                // var regex = new RegExp("^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$")
+
+                // workshop registration for first year
+                var regex = new RegExp("^(22)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})$")
 
                 //regex for registration for 1st year only
                 // var regex = new RegExp("^(21|22)(((11|12|14|10|13|00|31|21|32|40|153|164|)[0-9][0-9][0-9])|((154)[0-9][0-9]))(d|D|)[-]?[mdlMDL]?$");
@@ -581,7 +590,10 @@
                 if($("#Email").val()!=''){
 
                     // Regex for registration of 1st and 2nd year 
-                    var regex = new RegExp("^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$")
+                    // var regex = new RegExp("^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$")
+
+                    // workshop for first year
+                    var regex = new RegExp("^[a-zA-Z]+(22)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})(@akgec\.ac\.in)$")
 
                     // Check if email is valid
                     // var regex = new RegExp("/^[a-zA-Z]+(21|22)(((11|12|14|10|13|00|31|21|32|40|153(x|X){3})[0-9][0-9][0-9])@(akgec.ac.in)$/");
@@ -592,7 +604,7 @@
                         return;
                     }
 
-                    var email = $("#Email").val().toLowerCase().replace('xxx', '164')
+                    // var email = $("#Email").val().toLowerCase().replace('xxx', '164')
                     var regex_exp = $("#Student").val()
                     var regex_exp_email = `^[a-zA-Z]+(${regex_exp})@(\akgec.ac.in)$`
                     console.log(regex_exp_email)
@@ -628,7 +640,10 @@
                 // var regex = new RegExp(/^[a-zA-Z]+(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9]@(\akgec.ac.in)$/);
                 
                 // Regex for the registration of 1st and 2nd year
-                var regex = new RegExp("^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$")
+                // var regex = new RegExp("^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$")
+
+                // workshop for first year
+                var regex = new RegExp("^[a-zA-Z]+(22)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})(@akgec\.ac\.in)$")
 
                 // registrations for first year only
                 // var regex = new RegExp(/^[a-zA-Z]+(21|22)(((11|12|14|10|13|00|31|21|32|40|153|(x|X){3})[0-9][0-9][0-9])|((154|164)[0-9][0-9]))@(\akgec.ac.in)$/);
@@ -647,7 +662,10 @@
                 
 
                 // Regex for registration for 1st and 2nd year
-                var regex = new RegExp("^(22|21)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})([-]?[mdlMDL]?)$")
+                // var regex = new RegExp("^(22|21)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})([-]?[mdlMDL]?)$")
+
+                // workshop registration for first year
+                var regex = new RegExp("^(22)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})$")
 
                 //regex for registration for 1st year only
                 // var regex = new RegExp("^(21|22)(((11|12|14|10|13|00|31|21|32|40|153|164)[0-9][0-9][0-9])|((154)[0-9][0-9]))(d|D|)[-]?[mdlMDL]?$");
@@ -683,109 +701,109 @@
             }
         });
 
-        $("#Roll_no").focusout(function (event) {
-            if(event.charCode!=0) {
-                if($(this).val()==''){
-                    document.getElementById('roll_no_err').innerHTML = "Roll no. can't be blank";
-                    $( "#roll_no_err" ).show();
-                    return;
-                }
-                var roll_no_regex = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
-                var regex = new RegExp(roll_no_regex);
-                if (!regex.test($("#Roll_no").val())) {
-                    document.getElementById('roll_no_err').innerHTML = "Invalid Roll Number";
-                    $( "#roll_no_err" ).show();
-                }
-            }
-        });
-        $("#Roll_no").focusin(function (event) {
-            if (event.charCode!=0) {
-                $( "#roll_no_err" ).hide();
-            }
-        });
-        $("#Roll_no").attr('maxlength','13');
+        // $("#Roll_no").focusout(function (event) {
+        //     if(event.charCode!=0) {
+        //         if($(this).val()==''){
+        //             document.getElementById('roll_no_err').innerHTML = "Roll no. can't be blank";
+        //             $( "#roll_no_err" ).show();
+        //             return;
+        //         }
+        //         var roll_no_regex = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
+        //         var regex = new RegExp(roll_no_regex);
+        //         if (!regex.test($("#Roll_no").val())) {
+        //             document.getElementById('roll_no_err').innerHTML = "Invalid Roll Number";
+        //             $( "#roll_no_err" ).show();
+        //         }
+        //     }
+        // });
+        // $("#Roll_no").focusin(function (event) {
+        //     if (event.charCode!=0) {
+        //         $( "#roll_no_err" ).hide();
+        //     }
+        // });
+        // $("#Roll_no").attr('maxlength','13');
 
-        $("#skills").focusout(function (event) {
-            if (event.charCode!=0) {
-                if ($("#skills").val().trimEnd().trimStart() == '') {
-                    document.getElementById('skills_err').innerHTML = "This field is required";
-                    $( "#skills_err" ).show();
-                }
-            }
-        });
-        $("#skills").focusin(function (event) {
-            if (event.charCode!=0) {
-                $( "#skills_err" ).hide();
-            }
-        });
-        $("#skills").attr('maxlength','245');        
+        // $("#skills").focusout(function (event) {
+        //     if (event.charCode!=0) {
+        //         if ($("#skills").val().trimEnd().trimStart() == '') {
+        //             document.getElementById('skills_err').innerHTML = "This field is required";
+        //             $( "#skills_err" ).show();
+        //         }
+        //     }
+        // });
+        // $("#skills").focusin(function (event) {
+        //     if (event.charCode!=0) {
+        //         $( "#skills_err" ).hide();
+        //     }
+        // });
+        // $("#skills").attr('maxlength','245');        
         
 
-        $("#github_username").focusout(function (event) {
-            if (event.charCode!=0) {
-                if ($("#github_username").val() == '') {
-                    // document.getElementById('github_username_err').innerHTML = "This field is required";
-                    // $( "#github_username_err" ).show();
-                    return;
-                }
-                var regex =  new RegExp("^_*[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$");
-                if (!regex.test($(this).val())) {
-                    document.getElementById('github_username_err').innerHTML = "This username is not valid";
-                    $( "#github_username_err" ).show();
-                }
-            }
-        });
-        $("#github_username").focusin(function (event) {
-            if (event.charCode!=0) {
-                $( "#github_username_err" ).hide();
-            }
-        });
-        $('#github_username').attr('maxlength','100');
+        // $("#github_username").focusout(function (event) {
+        //     if (event.charCode!=0) {
+        //         if ($("#github_username").val() == '') {
+        //             // document.getElementById('github_username_err').innerHTML = "This field is required";
+        //             // $( "#github_username_err" ).show();
+        //             return;
+        //         }
+        //         var regex =  new RegExp("^_*[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$");
+        //         if (!regex.test($(this).val())) {
+        //             document.getElementById('github_username_err').innerHTML = "This username is not valid";
+        //             $( "#github_username_err" ).show();
+        //         }
+        //     }
+        // });
+        // $("#github_username").focusin(function (event) {
+        //     if (event.charCode!=0) {
+        //         $( "#github_username_err" ).hide();
+        //     }
+        // });
+        // $('#github_username').attr('maxlength','100');
 
-        $("#behance_username").focusout(function (event) {
-            if (event.charCode!=0) {
-                if ($("#behance_username").val() == '') {
-                    // document.getElementById('behance_username_err').innerHTML = "This field is required";
-                    // $( "#behance_username_err" ).show();
-                    return;
-                }
-                var regex =  new RegExp("^([A-Za-z0-9\-\_])*$");
-                if (!regex.test($(this).val())) {
-                    document.getElementById('behance_username_err').innerHTML = "This username is not valid";
-                    $( "#behance_username_err" ).show();
-                }
-            }
-        });
-        $("#behance_username").focusin(function (event) {
-            if (event.charCode!=0) {
-                $( "#behance_username_err" ).hide();
-            }
-        });
-        $('#behance_username').attr('maxlength','100');
+        // $("#behance_username").focusout(function (event) {
+        //     if (event.charCode!=0) {
+        //         if ($("#behance_username").val() == '') {
+        //             // document.getElementById('behance_username_err').innerHTML = "This field is required";
+        //             // $( "#behance_username_err" ).show();
+        //             return;
+        //         }
+        //         var regex =  new RegExp("^([A-Za-z0-9\-\_])*$");
+        //         if (!regex.test($(this).val())) {
+        //             document.getElementById('behance_username_err').innerHTML = "This username is not valid";
+        //             $( "#behance_username_err" ).show();
+        //         }
+        //     }
+        // });
+        // $("#behance_username").focusin(function (event) {
+        //     if (event.charCode!=0) {
+        //         $( "#behance_username_err" ).hide();
+        //     }
+        // });
+        // $('#behance_username').attr('maxlength','100');
 
 
         
-        $("#your_work").focusout(function (event) {
-            if (event.charCode!=0) {
-                if ($("#your_work").val() != '') {
-                    handles = $("#your_work").val().split(",");
-                    for(var i=0;i<handles.length;i++){
-                        h = handles[i].trimEnd();
-                        h = h.trimStart();
-                        if(!(isValidHttpUrl(h))){
-                            document.getElementById('your_work_err').innerHTML = h + " is not a valid URL";
-                            $( "#your_work_err" ).show();
-                        }
-                    }
-                }
-            }
-        });
-        $("#your_work").focusin(function (event) {
-            if (event.charCode!=0) {
-                $( "#your_work_err" ).hide();
-            }
-        });
-        $("#your_work").attr('maxlength','1000');
+        // $("#your_work").focusout(function (event) {
+        //     if (event.charCode!=0) {
+        //         if ($("#your_work").val() != '') {
+        //             handles = $("#your_work").val().split(",");
+        //             for(var i=0;i<handles.length;i++){
+        //                 h = handles[i].trimEnd();
+        //                 h = h.trimStart();
+        //                 if(!(isValidHttpUrl(h))){
+        //                     document.getElementById('your_work_err').innerHTML = h + " is not a valid URL";
+        //                     $( "#your_work_err" ).show();
+        //                 }
+        //             }
+        //         }
+        //     }
+        // });
+        // $("#your_work").focusin(function (event) {
+        //     if (event.charCode!=0) {
+        //         $( "#your_work_err" ).hide();
+        //     }
+        // });
+        // $("#your_work").attr('maxlength','1000');
 
         $("#Branch").focusout(function (event) {
             //Check if student number is blank
@@ -850,7 +868,10 @@
             // var re=/^[a-zA-Z]+(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9]@(\akgec.ac.in)$/;
             
             // First and Second year Registrations
-            var re=/^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$/;
+            // var re=/^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$/;
+
+            // workshop registration for first year
+            var re=/^[a-zA-Z]+(22)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})(@akgec\.ac\.in)$/;
 
             // First year Registration only
             //var re=/^[a-zA-Z]+(21|22)(((11|12|14|10|13|00|31|21|32|40|153|(x|X){3})[0-9][0-9][0-9])|((154|164)[0-9][0-9]))@(\akgec.ac.in)$/;
@@ -872,7 +893,10 @@
             // regex_string = "^(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9](d|D|)[-]?[mdlMDL]?$";
             
             // First and Second year registrations
-            regex_string = "^(22|21)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})([-]?[mdlMDL]?)$"
+            // regex_string = "^(22|21)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})([-]?[mdlMDL]?)$"
+
+            // workshop registration for first year
+            regex_string = "^(22)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})$"
 
             // First Year Registration only
             // regex_string = "^(21|22)(((11|12|14|10|13|00|31|21|32|40|153|164)[0-9][0-9][0-9])|((154|164)[0-9][0-9]))$"
@@ -899,25 +923,25 @@
         }
 
         // Roll no. validation
-        var roll_no =  document.getElementById('Roll_no').value;
-        if (roll_no == "") {
-            document.getElementById('roll_no_err').innerHTML = "Roll number cannot be empty";
-            document.getElementById('roll_no_err').style.display = "block";
-            return false;
-        }else {
-        // Regex for first and second year
-        var roll_no_regex = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
+        // var roll_no =  document.getElementById('Roll_no').value;
+        // if (roll_no == "") {
+        //     document.getElementById('roll_no_err').innerHTML = "Roll number cannot be empty";
+        //     document.getElementById('roll_no_err').style.display = "block";
+        //     return false;
+        // }else {
+        // // Regex for first and second year
+        // var roll_no_regex = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
 
-        // var roll_no_regex = "^(21|22)00270[0-9]{6}$"
-        // regex_string = "^(21)00270(15|11|12|14|10|13|00|31|21|32|40)[0-9]{4}$";
-        var re = new RegExp(roll_no_regex);
-            if(!re.test(roll_no)){
-                document.getElementById('roll_no_err').innerHTML = "Roll number is not valid";
-                document.getElementById('roll_no_err').style.display = "block";
+        // // var roll_no_regex = "^(21|22)00270[0-9]{6}$"
+        // // regex_string = "^(21)00270(15|11|12|14|10|13|00|31|21|32|40)[0-9]{4}$";
+        // var re = new RegExp(roll_no_regex);
+        //     if(!re.test(roll_no)){
+        //         document.getElementById('roll_no_err').innerHTML = "Roll number is not valid";
+        //         document.getElementById('roll_no_err').style.display = "block";
 
-                return false;
-            }
-        }
+        //         return false;
+        //     }
+        // }
 
         // Phone number validation
         var phone = document.getElementById('Phone').value;

@@ -90,10 +90,15 @@ class RegistrationForm(forms.ModelForm):
         #             'student_number','branch','year','roll_no',
         #             'gender','domain','skills', 'github_username', 'behance_username', 'is_hosteler'
         #         ]
+        # fields = [
+        #             'name', 'phone','your_work','college_email',
+        #             'student_number','branch','year','roll_no',
+        #             'gender','skills', 'github_username', 'is_hosteler','domain','captcha'
+        #         ]
         fields = [
-                    'name', 'phone','your_work','college_email',
-                    'student_number','branch','year','roll_no',
-                    'gender','skills', 'github_username', 'is_hosteler','domain','captcha'
+                    'name','college_email','phone',
+                    'student_number','branch',
+                    'gender', 'is_hosteler','captcha'
                 ]
 
     def __init__(self, *args, **kwargs):
@@ -121,17 +126,17 @@ class RegistrationForm(forms.ModelForm):
             )
         )
 
-        self.fields['your_work'] = forms.CharField(
-            max_length=1000,required=False,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'your_work',
-                       'class': 'form-control',
-                       'id': 'your_work',
-                       'onblur': ''
-                       }
-            )
-        )
+        # self.fields['your_work'] = forms.CharField(
+        #     max_length=1000,required=False,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'your_work',
+        #                'class': 'form-control',
+        #                'id': 'your_work',
+        #                'onblur': ''
+        #                }
+        #     )
+        # )
         self.fields['phone'] = forms.CharField(
             required=True,
             widget=forms.TextInput(
@@ -144,18 +149,18 @@ class RegistrationForm(forms.ModelForm):
                        }
             )
         )
-        self.fields['whatsapp'] = forms.CharField(
-            required=False,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'whatsapp',
-                       'class': 'form-control',
-                       'id': 'whatsapp',
-                       'placeholder': 'Enter whatsapp No.',
-                       'onblur': ''
-                       }
-            )
-        )
+        # self.fields['whatsapp'] = forms.CharField(
+        #     required=False,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'whatsapp',
+        #                'class': 'form-control',
+        #                'id': 'whatsapp',
+        #                'placeholder': 'Enter whatsapp No.',
+        #                'onblur': ''
+        #                }
+        #     )
+        # )
         self.fields['student_number'] = forms.CharField(
             required=True,
             widget=forms.TextInput(
@@ -166,16 +171,16 @@ class RegistrationForm(forms.ModelForm):
                        'onblur': ''}
             )
         )
-        self.fields['roll_no'] = forms.CharField(
-            required=True,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'class': 'form-control',
-                       'id': 'Roll_no',
-                       'placeholder': 'Enter Roll Number',
-                       'onblur': ''}
-            )
-        )
+        # self.fields['roll_no'] = forms.CharField(
+        #     required=True,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'class': 'form-control',
+        #                'id': 'Roll_no',
+        #                'placeholder': 'Enter Roll Number',
+        #                'onblur': ''}
+        #     )
+        # )
         self.fields['branch'] = forms.ModelChoiceField(
             queryset=Branch.objects.filter(active=True).order_by('name'),
             initial=Branch.objects.filter(active=True).order_by('name').first(),
@@ -204,69 +209,69 @@ class RegistrationForm(forms.ModelForm):
                        }
             )
         )
-        self.fields['domain'] = forms.ModelChoiceField(
-            queryset=Domain.objects.all(),
-            initial=Domain.objects.all().first(),
-            required=True,
-            widget=forms.Select(
-                attrs={'class': 'form-control',
-                       'data-val': 'true',
-                       'data-val-required': '*',
-                       'id': 'domain',
-                       'name': 'domain',
-                       }
-            )
-        )
+        # self.fields['domain'] = forms.ModelChoiceField(
+        #     queryset=Domain.objects.all(),
+        #     initial=Domain.objects.all().first(),
+        #     required=True,
+        #     widget=forms.Select(
+        #         attrs={'class': 'form-control',
+        #                'data-val': 'true',
+        #                'data-val-required': '*',
+        #                'id': 'domain',
+        #                'name': 'domain',
+        #                }
+        #     )
+        # )
 
-        self.fields['skills'] = forms.CharField(
-            required=False,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'skills',
-                       'class': 'form-control',
-                       'id': 'skills',
-                       'onblur': ''
-                       }
-            )
-        )
-        self.fields['year'] = forms.ModelChoiceField(
-            queryset=Year.objects.filter(active=True),
-            initial=Year.objects.filter(active=True).first(),
-            required=True,
-            widget=forms.Select(
-                attrs={'class': 'form-control',
-                       'data-val': 'true',
-                       'data-val-required': '*',
-                       'id': 'Year',
-                       'name': 'Year'},
-            ),
-        )
-        self.fields['design_tools'] = forms.CharField(
-            required=False,
-            initial="",
-            label = "Names of designing tools you are familiar with(if any)?",
-            widget=forms.TextInput(
-            attrs={
-                'data-val': 'true',
-                'data-val-required': '*',
-                'id': 'design_tools',
-                'name': 'design_tools',
-                'type': 'text'
-                }
-            )
-        )
+        # self.fields['skills'] = forms.CharField(
+        #     required=False,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'skills',
+        #                'class': 'form-control',
+        #                'id': 'skills',
+        #                'onblur': ''
+        #                }
+        #     )
+        # )
+        # self.fields['year'] = forms.ModelChoiceField(
+        #     queryset=Year.objects.filter(active=True),
+        #     initial=Year.objects.filter(active=True).first(),
+        #     required=True,
+        #     widget=forms.Select(
+        #         attrs={'class': 'form-control',
+        #                'data-val': 'true',
+        #                'data-val-required': '*',
+        #                'id': 'Year',
+        #                'name': 'Year'},
+        #     ),
+        # )
+        # self.fields['design_tools'] = forms.CharField(
+        #     required=False,
+        #     initial="",
+        #     label = "Names of designing tools you are familiar with(if any)?",
+        #     widget=forms.TextInput(
+        #     attrs={
+        #         'data-val': 'true',
+        #         'data-val-required': '*',
+        #         'id': 'design_tools',
+        #         'name': 'design_tools',
+        #         'type': 'text'
+        #         }
+        #     )
+        # )
 
-        self.fields['github_username'] = forms.CharField(
-            max_length=250, required=False,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'github_username',
-                       'class': 'form-control',
-                       'id': 'github_username',
-                       'placeholder': 'Enter Github username',
-                       'onblur': ''}
-            )
-        )
+        # self.fields['github_username'] = forms.CharField(
+        #     max_length=250, required=False,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'github_username',
+        #                'class': 'form-control',
+        #                'id': 'github_username',
+        #                'placeholder': 'Enter Github username',
+        #                'onblur': ''}
+        #     )
+        # )
 
         # self.fields['behance_username'] = forms.CharField(
         #     max_length=250, required=False,
@@ -331,37 +336,37 @@ class RegistrationForm(forms.ModelForm):
         except (KeyError, ObjectDoesNotExist):
             raise ValidationError("")
 
-        try:
-            roll_no = cleaned_data['roll_no']
-        except KeyError:
-            raise ValidationError("")
+        # try:
+        #     roll_no = cleaned_data['roll_no']
+        # except KeyError:
+        #     raise ValidationError("")
 
 
-        hacker_rank_username = cleaned_data.get('hacker_rank_username')
-        github_username = cleaned_data.get('github_username')
+        # hacker_rank_username = cleaned_data.get('hacker_rank_username')
+        # github_username = cleaned_data.get('github_username')
         # behance_username = cleaned_data.get('behance_username')
 
-        your_work = cleaned_data.get('your_work')
+        # your_work = cleaned_data.get('your_work')
         
-        if hacker_rank_username:
-            pattern = re.compile("^_*[a-zA-Z\\d]+[a-zA-z0-9]*$")
-            if not pattern.match(str(hacker_rank_username)):
-                raise ValidationError("Invalid HackerRank Username")
+        # if hacker_rank_username:
+        #     pattern = re.compile("^_*[a-zA-Z\\d]+[a-zA-z0-9]*$")
+        #     if not pattern.match(str(hacker_rank_username)):
+        #         raise ValidationError("Invalid HackerRank Username")
     
-        if github_username:
-            pattern = re.compile("^_*[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$")
-            if not pattern.match(str(github_username)):
-                raise ValidationError("Invalid Github Username")
+        # if github_username:
+        #     pattern = re.compile("^_*[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$")
+        #     if not pattern.match(str(github_username)):
+        #         raise ValidationError("Invalid Github Username")
         
         # if behance_username:
         #     pattern = re.compile("^([A-Za-z0-9\-\_])*$")
         #     if not pattern.match(str(behance_username)):
         #         return ValidationError("Invalid HackerRank Username")
-        year = ''
-        if str(cleaned_data['year'])[0] == '2':
-            year = '21'
-        elif str(cleaned_data['year'])[0] == '1':
-            year = '22'
+        # year = ''
+        # if str(cleaned_data['year'])[0] == '2':
+        #     year = '21'
+        # elif str(cleaned_data['year'])[0] == '1':
+        #     year = '22'
         
         # print(str(cleaned_data['student_number'])[0:2])
         # print(str(cleaned_data['roll_no'])[0:2])
@@ -378,35 +383,38 @@ class RegistrationForm(forms.ModelForm):
                 raise ValidationError("Student number doesn't match with the student number in Email.")
             
             
-        if student_number and roll_no:
-            if str(cleaned_data['student_number'])[0:2] != str(cleaned_data['roll_no'])[0:2]:
-                raise ValidationError("Roll Number Year doesn't match with Student Number Year")
+        # if student_number and roll_no:
+        #     if str(cleaned_data['student_number'])[0:2] != str(cleaned_data['roll_no'])[0:2]:
+        #         raise ValidationError("Roll Number Year doesn't match with Student Number Year")
         
-        if year and student_number:
-            if year != str(cleaned_data['student_number'])[0:2]:
-                raise ValidationError("Year doesn't match with Student Number")
+        # if year and student_number:
+        #     if year != str(cleaned_data['student_number'])[0:2]:
+        #         raise ValidationError("Year doesn't match with Student Number")
             
-        if year and roll_no: 
-            if year != str(cleaned_data['roll_no'])[0:2]:
-                raise ValidationError("Year doesn't match with Roll Number")
+        # if year and roll_no: 
+        #     if year != str(cleaned_data['roll_no'])[0:2]:
+        #         raise ValidationError("Year doesn't match with Roll Number")
         
-        if your_work:
-            your_work = your_work.split(',')
-            for link in your_work:
-                link = link.lstrip()
-                link = link.rstrip()
+        # if your_work:
+        #     your_work = your_work.split(',')
+        #     for link in your_work:
+        #         link = link.lstrip()
+        #         link = link.rstrip()
 
-                if (link[:7]).lower()!='http://' and link[:8].lower()!='https://':
-                    link = 'http://'+ link
-                try:
-                    validate_url(link)
-                except ValidationError:
-                    raise ValidationError(f'Your work : {link} is not a valid URL')
+        #         if (link[:7]).lower()!='http://' and link[:8].lower()!='https://':
+        #             link = 'http://'+ link
+        #         try:
+        #             validate_url(link)
+        #         except ValidationError:
+        #             raise ValidationError(f'Your work : {link} is not a valid URL')
  
         # regex_student = "^(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9](d|D|)[-]?[mdlMDL]?";
 
         # registration for first and second year 
-        regex_student = "^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$";    
+        # regex_student = "^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$";    
+
+        # workshop registration for first year
+        regex_student = "^(22)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})$";    
         pattern_student = re.compile(regex_student)
 
         if student_number:
@@ -417,7 +425,7 @@ class RegistrationForm(forms.ModelForm):
 
         # Check if college email contains the student number
         regex_college_email1= f"^[a-zA-Z]+({str(student_number)})(\@akgec\.ac\.in)$"
-        regex_college_email2= "^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$"
+        regex_college_email2= "^[a-zA-Z]+(22)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})(@akgec\.ac\.in)$"
         pattern_college_email1= re.compile(regex_college_email1)
         pattern_college_email2= re.compile(regex_college_email2)
 
@@ -445,13 +453,13 @@ class RegistrationForm(forms.ModelForm):
                 raise ValidationError("Student Number doesn't match that of branch code")
 
         # Regex for first and second year
-        regex_roll_no = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
+        # regex_roll_no = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
 
         # regex_roll_no = "^(21)00270(15|11|12|14|10|13|00|31|21|32|40)[0-9]{4}$"
-        pattern_roll_no = re.compile(regex_roll_no)
+        # pattern_roll_no = re.compile(regex_roll_no)
 
-        if not pattern_roll_no.match(str(roll_no)):
-            raise ValidationError("Invalid Roll No. ")
+        # if not pattern_roll_no.match(str(roll_no)):
+        #     raise ValidationError("Invalid Roll No. ")
 
         event = Event.objects.filter(active=True).first()
         if Registration.objects.filter(college_email=college_email, event=event).exists():
