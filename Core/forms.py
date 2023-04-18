@@ -372,15 +372,24 @@ class RegistrationForm(forms.ModelForm):
         # print(str(cleaned_data['roll_no'])[0:2])
         
         
+        # if student_name and college_email and student_number:
+        #     first_name = str(student_name).split(' ')[0]
+        #     email_username = str(college_email).split('@')[0]
+            
+        #     if first_name.lower() != email_username[:len(first_name)].lower():
+        #         raise ValidationError("Student name doesn't match with the student name in Email.")
+            
+        #     if str(student_number) != email_username[len(first_name):]:
+        #         raise ValidationError("Student number doesn't match with the student number in Email.")
+        
         if student_name and college_email and student_number:
             first_name = str(student_name).split(' ')[0]
-            email_username = str(college_email).split('@')[0]
-            
-            if first_name.lower() != email_username[:len(first_name)].lower():
+            college_email = college_email.lower()
+            if college_email.__contains__(str(first_name.lower())) == False:
                 raise ValidationError("Student name doesn't match with the student name in Email.")
-            
-            if str(student_number) != email_username[len(first_name):]:
+            if college_email.__contains__(str(student_number)) == False:
                 raise ValidationError("Student number doesn't match with the student number in Email.")
+                
             
             
         # if student_number and roll_no:
