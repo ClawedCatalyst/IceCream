@@ -73,7 +73,8 @@
                                     {% for message in messages %}
                                     <span style="color: green">{{ message }}</span>
                                     {% endfor %}
-                                    <hr><span style="color: #0094ff"> Your registration is successful</span>
+                                    <hr><span style="color: red">Note: Your Registration will be valid only after fee payment (₹ 200) at SI LAB</span>
+        
                                 </h4>
                             </div>
                         </div>
@@ -1038,7 +1039,7 @@
         setTimeout(function() {
             document.getElementById('centralModalLg').style.display = "none";
             document.getElementById('already_exit').style.color = "red";
-        }, 4000);
+        }, 8000);
     });
 </script>
 {% endif %}
