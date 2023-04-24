@@ -3,21 +3,26 @@ from django.urls import reverse_lazy
 from .models import ContactUs, Registration, Branch, Year, Gender, Event,AlumniRegistration,Domain
 from django.core.validators import RegexValidator
 from django.forms import ValidationError
-from snowpenguin.django.recaptcha2.fields import ReCaptchaField
-from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
-# from captcha.fields import ReCaptchaField
-from captcha.widgets import ReCaptchaV2Checkbox
+# from snowpenguin.django.recaptcha2.fields import ReCaptchaField
+# from snowpenguin.django.recaptcha2.widgets import ReCaptchaWidget
+from captcha.fields import ReCaptchaField
+# from captcha.widgets import ReCaptchaV2Checkbox
 from django.core.validators import URLValidator 
 from django.core.exceptions import ObjectDoesNotExist
 import re
+
+studentno_regex = "^((2[12])(((11|12|14|10|13|00|31|21|32|40|153|154|164|169)[0-9][0-9][0-9])|((154|153|164)[0-9][0-9])))|((2[12])(((11|12|14|10|13|00|31|21|32|40|153|154|164|169)[0-9][0-9][0-9])|((154|153|164)[0-9][0-9]))(-{0,1})[mMdDlL])$"
+email_regex = "^[a-zA-Z]+(((2[12])(((11|12|14|10|13|00|31|21|32|40|153|154|164|169)[0-9][0-9][0-9])|((154|153|164)[0-9][0-9])))|((2[12])(((11|12|14|10|13|00|31|21|32|40|153|154|164|169)[0-9][0-9][0-9])|((154|153|164)[0-9][0-9]))(-{0,1})[mMdDlL]))(@akgec.ac.in)$"
+
+
 validate_url = URLValidator()
 class ContactUsForm(forms.ModelForm):
-    captcha = ReCaptchaField(widget=ReCaptchaWidget())
-    # captcha = ReCaptchaField()
+    # captcha = ReCaptchaField(widget=ReCaptchaWidget())
+    captcha = ReCaptchaField()
 
     class Meta:
         model = ContactUs
-        fields = ['name', 'contact', 'email', 'subject', 'message', 'captcha']
+        fields = ['name', 'contact', 'email', 'subject', 'message','captcha']
 
     name = forms.CharField(
         max_length=225, required=True,
@@ -73,8 +78,8 @@ class ContactUsForm(forms.ModelForm):
     )
 
 class RegistrationForm(forms.ModelForm):
-    captcha = ReCaptchaField(widget=ReCaptchaWidget())
-    # captcha = ReCaptchaField()
+    # captcha = ReCaptchaField(widget=ReCaptchaWidget())
+    captcha = ReCaptchaField()
 
     class Meta:
         model = Registration
@@ -85,11 +90,6 @@ class RegistrationForm(forms.ModelForm):
         #              'is_hosteler'
         #         ]
 
-        # fields = [
-        #             'name', 'phone','your_work','college_email',
-        #             'student_number','branch','year','roll_no',
-        #             'gender','domain','skills', 'github_username', 'behance_username', 'is_hosteler'
-        #         ]
         fields = [
                     'name', 'phone','your_work','college_email',
                     'student_number','branch','year','roll_no',
@@ -144,18 +144,18 @@ class RegistrationForm(forms.ModelForm):
                        }
             )
         )
-        self.fields['whatsapp'] = forms.CharField(
-            required=False,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'whatsapp',
-                       'class': 'form-control',
-                       'id': 'whatsapp',
-                       'placeholder': 'Enter whatsapp No.',
-                       'onblur': ''
-                       }
-            )
-        )
+        # self.fields['whatsapp'] = forms.CharField(
+        #     required=False,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'whatsapp',
+        #                'class': 'form-control',
+        #                'id': 'whatsapp',
+        #                'placeholder': 'Enter whatsapp No.',
+        #                'onblur': ''
+        #                }
+        #     )
+        # )
         self.fields['student_number'] = forms.CharField(
             required=True,
             widget=forms.TextInput(
@@ -241,32 +241,32 @@ class RegistrationForm(forms.ModelForm):
                        'name': 'Year'},
             ),
         )
-        self.fields['design_tools'] = forms.CharField(
-            required=False,
-            initial="",
-            label = "Names of designing tools you are familiar with(if any)?",
-            widget=forms.TextInput(
-            attrs={
-                'data-val': 'true',
-                'data-val-required': '*',
-                'id': 'design_tools',
-                'name': 'design_tools',
-                'type': 'text'
-                }
-            )
-        )
+        # self.fields['design_tools'] = forms.CharField(
+        #     required=False,
+        #     initial="",
+        #     label = "Names of designing tools you are familiar with(if any)?",
+        #     widget=forms.TextInput(
+        #     attrs={
+        #         'data-val': 'true',
+        #         'data-val-required': '*',
+        #         'id': 'design_tools',
+        #         'name': 'design_tools',
+        #         'type': 'text'
+        #         }
+        #     )
+        # )
 
-        self.fields['github_username'] = forms.CharField(
-            max_length=250, required=False,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'github_username',
-                       'class': 'form-control',
-                       'id': 'github_username',
-                       'placeholder': 'Enter Github username',
-                       'onblur': ''}
-            )
-        )
+        # self.fields['github_username'] = forms.CharField(
+        #     max_length=250, required=False,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'github_username',
+        #                'class': 'form-control',
+        #                'id': 'github_username',
+        #                'placeholder': 'Enter Github username',
+        #                'onblur': ''}
+        #     )
+        # )
 
         # self.fields['behance_username'] = forms.CharField(
         #     max_length=250, required=False,
@@ -304,7 +304,7 @@ class RegistrationForm(forms.ModelForm):
             student_name = cleaned_data['name']
         except KeyError:
             raise ValidationError("")
-        
+
         try:
             student_number = cleaned_data['student_number']
         except KeyError:
@@ -337,36 +337,33 @@ class RegistrationForm(forms.ModelForm):
             raise ValidationError("")
 
 
-        hacker_rank_username = cleaned_data.get('hacker_rank_username')
-        github_username = cleaned_data.get('github_username')
+        # hacker_rank_username = cleaned_data.get('hacker_rank_username')
+        # github_username = cleaned_data.get('github_username')
         # behance_username = cleaned_data.get('behance_username')
 
         your_work = cleaned_data.get('your_work')
         
-        if hacker_rank_username:
-            pattern = re.compile("^_*[a-zA-Z\\d]+[a-zA-z0-9]*$")
-            if not pattern.match(str(hacker_rank_username)):
-                raise ValidationError("Invalid HackerRank Username")
+        # if hacker_rank_username:
+        #     pattern = re.compile("^_*[a-zA-Z\\d]+[a-zA-z0-9]*$")
+        #     if not pattern.match(str(hacker_rank_username)):
+        #         return ValidationError("Invalid HackerRank Username")
     
-        if github_username:
-            pattern = re.compile("^_*[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$")
-            if not pattern.match(str(github_username)):
-                raise ValidationError("Invalid Github Username")
+        # if github_username:
+        #     pattern = re.compile("^_*[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$")
+        #     if not pattern.match(str(github_username)):
+        #         return ValidationError("Invalid HackerRank Username")
         
         # if behance_username:
         #     pattern = re.compile("^([A-Za-z0-9\-\_])*$")
         #     if not pattern.match(str(behance_username)):
         #         return ValidationError("Invalid HackerRank Username")
+    
         year = ''
         if str(cleaned_data['year'])[0] == '2':
             year = '21'
         elif str(cleaned_data['year'])[0] == '1':
             year = '22'
-        
-        # print(str(cleaned_data['student_number'])[0:2])
-        # print(str(cleaned_data['roll_no'])[0:2])
-        
-        
+
         if student_name and college_email and student_number:
             student_name = student_name.lower()
             student_name = student_name.replace(" ","")
@@ -381,8 +378,7 @@ class RegistrationForm(forms.ModelForm):
                 raise ValidationError("Student name doesn't match with the student name in Email.")
             if college_email.__contains__(str(student_number)) == False:
                 raise ValidationError("Student number doesn't match with the student number in Email.")
-            
-            
+
         if student_number and roll_no:
             if str(cleaned_data['student_number'])[0:2] != str(cleaned_data['roll_no'])[0:2]:
                 raise ValidationError("Roll Number Year doesn't match with Student Number Year")
@@ -394,7 +390,7 @@ class RegistrationForm(forms.ModelForm):
         if year and roll_no: 
             if year != str(cleaned_data['roll_no'])[0:2]:
                 raise ValidationError("Year doesn't match with Roll Number")
-        
+
         if your_work:
             your_work = your_work.split(',')
             for link in your_work:
@@ -408,28 +404,29 @@ class RegistrationForm(forms.ModelForm):
                 except ValidationError:
                     raise ValidationError(f'Your work : {link} is not a valid URL')
  
+ 
+ 
         # regex_student = "^(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9](d|D|)[-]?[mdlMDL]?";
 
-        # registration for first and second year 
-        regex_student = "^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$";    
-        pattern_student = re.compile(regex_student)
+        # regex_student = "^(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9](d|D|)[-]?[mdlMDL]?";
+
+        # regex_student = "^(20)(((11|12|14|10|13|00|31|21|32|40|153|164)[0-9][0-9][0-9])|((154|164)[0-9][0-9]))(d|D|)[-]?[mdlMDL]?$";    
+        pattern_student = re.compile(studentno_regex)
 
         if student_number:
             if not pattern_student.match(str(student_number)):
                 raise ValidationError("Invalid Student Number")
 
-        # regex_college_email= "^[a-zA-Z]+(20|21)(15|11|12|14|10|13|00|31|21|32|40)[0-9][0-9][0-9](\@akgec\.ac\.in)$"
 
         # Check if college email contains the student number
-        regex_college_email1= f"^[a-zA-Z]+({str(student_number)})(\@akgec\.ac\.in)$"
-        regex_college_email2= "^[a-zA-Z]+(22|21)(00|1[0123]|15[34]|16[49]|31|40|x{3}|X{3})([0-9]{3})([-]?[mdlMDL]?)(@akgec\.ac\.in)$"
-        pattern_college_email1= re.compile(regex_college_email1)
-        pattern_college_email2= re.compile(regex_college_email2)
+
+        # regex_college_email2= "^[a-zA-Z]+(20)(((11|12|14|10|13|00|31|21|32|40|153|(x|X){3})[0-9][0-9][0-9])|((154)[0-9][0-9]))(\@akgec.ac.in)$"
+
+        pattern_college_email= re.compile(email_regex)
 
         if college_email:
-            if not pattern_college_email1.match(str(college_email)):
-                if not pattern_college_email2.match(str(college_email)):
-                    raise ValidationError("Invalid College Email")
+            if not pattern_college_email.match(str(college_email)):
+                raise ValidationError("Invalid College Email")
 
         regex_phone= "^[56789]\d{9}$"
         pattern_phone=re.compile(regex_phone)
@@ -449,22 +446,15 @@ class RegistrationForm(forms.ModelForm):
             if not pattern_branch_code.match(student_number_branch_code):   
                 raise ValidationError("Student Number doesn't match that of branch code")
 
-        # Regex for first and second year
-        regex_roll_no = "^(2[12])(0027)(000|01[0123]|15[34]|16[49]|031|040)([0-9]{4})$"
 
-        # regex_roll_no = "^(21)00270(15|11|12|14|10|13|00|31|21|32|40)[0-9]{4}$"
-        pattern_roll_no = re.compile(regex_roll_no)
-
-        if not pattern_roll_no.match(str(roll_no)):
-            raise ValidationError("Invalid Roll No. ")
 
         event = Event.objects.filter(active=True).first()
         if Registration.objects.filter(college_email=college_email, event=event).exists():
             raise ValidationError('Registration with this email already exist.')
         elif Registration.objects.filter(student_number=student_number, event=event).exists():
             raise ValidationError('Registration with this Student Number already exist.')
-        # elif Registration.objects.filter(roll_no=roll_no, event=event).exists():
-        #     raise ValidationError('Registration with this roll number already exists.')
+        elif Registration.objects.filter(roll_no=roll_no, event=event).exists():
+            raise ValidationError('Registration with this roll number already exists.')
         elif Registration.objects.filter(phone=phone, event=event).exists():
             raise ValidationError('Registration with this phone already exist.')
         # elif Registration.objects.filter(whatsapp=whatsapp, event=event).exists():
@@ -478,7 +468,7 @@ class RegistrationAlumni(forms.ModelForm):
 
     phone_regex = RegexValidator(regex=r"^[56789]\d{9}$")
     contact_no = forms.CharField(validators=[phone_regex], max_length=10, required=False)
-    captcha = ReCaptchaField(widget=ReCaptchaWidget())
+    # captcha = ReCaptchaField(widget=ReCaptchaWidget())
     captcha = ReCaptchaField()
 
     class Meta:
