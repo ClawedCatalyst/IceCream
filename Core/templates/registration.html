@@ -228,13 +228,13 @@
                             </div> -->
                             
                             <!-- GitHub Username -->
-                            <div class="md-form" id='github'>
+                            <!-- <div class="md-form" id='github'>
                                 <i class="fa-brands fa-github prefix grey-text"></i>
                                 <input type="text" id="github_username" name="github_username" class="form-control">
                                 <label for="github_username">Github Username</label>
                                 <span id="github_username_err" class='validationerror'>Invalid Username</span>
                                 <span style="color: red" class='validationerror'>{{ form.github_username.errors }}</span>
-                            </div>
+                            </div> -->
                             
                             <!-- Behance Username -->
                             {% comment %} <div class="md-form" id='behance'>
@@ -249,7 +249,7 @@
                             <div class="md-form">
                                 <i class="fa-solid fa-link prefix grey-text"></i>
                                 <input type="text" id="your_work" name="your_work" class="form-control">
-                                <label class="long_text_label_link" for="your_work">Link to your work or coding profiles (if any)</label>
+                                <label class="long_text_label_link" for="your_work">Add the drive link of your final work</label>
                                 <span id="your_work_err" class='validationerror'>Invalid Links</span>
                                 <span style="color: red" class='validationerror'>{{ form.your_work.errors }}</span>
                             </div>
@@ -977,21 +977,25 @@
         //         }
         //     }
         // }
-        
+    
         // Your work links Validation
-        // var your_work= document.getElementById('your_work').value;
-        // if (your_work != ""){
-        //     handles = your_work.split(",");
-        //     for(var i=0;i<handles.length;i++){
-        //         h = handles[i].trimEnd();
-        //         h = h.trimStart();
-        //         if(!(isValidHttpUrl(h))){
-        //             document.getElementById('your_work_err').innerHTML = h + " is not a valid URL";
-        //             document.getElementById('your_work_err').style.display = "block";
-        //             return false;
-        //         }
-        //     }
-        // }
+        var your_work= document.getElementById('your_work').value;
+        if (your_work != ""){
+            handles = your_work.split(",");
+            for(var i=0;i<handles.length;i++){
+                h = handles[i].trimEnd();
+                h = h.trimStart();
+                if(!(isValidHttpUrl(h))){
+                    document.getElementById('your_work_err').innerHTML = h + " is not a valid URL";
+                    document.getElementById('your_work_err').style.display = "block";
+                    return false;
+                }
+            }
+        }else{
+            document.getElementById('your_work_err').innerHTML = "This field can't be empty";
+            document.getElementById('your_work_err').style.display = "block";
+            return false;
+        }
 
         // Captcha Validation
         var v = grecaptcha.getResponse();

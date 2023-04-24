@@ -93,7 +93,7 @@ class RegistrationForm(forms.ModelForm):
         fields = [
                     'name', 'phone','your_work','college_email',
                     'student_number','branch','year','roll_no',
-                    'gender','skills', 'github_username', 'is_hosteler','domain','captcha'
+                    'gender','skills', 'is_hosteler','domain','captcha'
                 ]
 
     def __init__(self, *args, **kwargs):
@@ -122,7 +122,7 @@ class RegistrationForm(forms.ModelForm):
         )
 
         self.fields['your_work'] = forms.CharField(
-            max_length=1000,required=False,
+            max_length=1000,required=True,
             widget=forms.TextInput(
                 attrs={'type': 'text',
                        'name': 'your_work',
