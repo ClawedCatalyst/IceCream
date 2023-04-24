@@ -371,6 +371,10 @@ class RegistrationForm(forms.ModelForm):
             student_name = student_name.lower()
             student_name = student_name.replace(" ","")
             college_email = college_email.lower()
+
+            # for 2021-22 AIML batch ; student number : 21164034 ; college email : name21xxx034@akgec.ac.in
+            college_email = college_email.replace('xxx', '164')
+
             email_username = str(college_email).split('2')[0]
 
             if student_name.__contains__(str(email_username)) == False:
