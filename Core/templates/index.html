@@ -113,7 +113,7 @@
         
         {% if event %}
         <div id="registration-link" class="register_button" href="{% url "registration" %}" onclick="redirect()">
-            Submit
+            Register
         </div>
         {% endif %}
         
@@ -503,12 +503,10 @@
                                         </p>
                                         <p>
                                             {% for contact in contact_info %}
-                                            You can give us a call on {{ contact.contact_number }}
-                                            or email us at <a href="mailto:softwareincubator.si@gmail.com">softwareincubator.si@gmail.com</a>
-                                            {% endfor %}
-                                            <!-- You can give us a call on 
-                                                or email us at
-                                                <a href="mailto:si.akgec14@gmail.com">si.akgec14@gmail.com</a> -->
+                                            You can email us at 
+                                            <a href="mailto:sdc@akgec.ac.in">sdc@akgec.ac.in</a>
+                                            <a href="mailto:softwareincubator.si@gmail.com">softwareincubator.si@gmail.com</a>
+                                            {% endfor %}                                            
                                             </p>
                                             <p>
                                                 <span style="color: #0094ff;">Software Incubator - SDC Lab<br/>

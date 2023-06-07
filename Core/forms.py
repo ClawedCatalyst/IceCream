@@ -91,9 +91,9 @@ class RegistrationForm(forms.ModelForm):
         #         ]
 
         fields = [
-                    'name', 'phone','your_work','college_email',
+                    'name', 'phone','college_email',
                     'student_number','branch','year','roll_no',
-                    'gender','skills', 'is_hosteler','domain','captcha'
+                    'gender', 'is_hosteler','captcha'
                 ]
 
     def __init__(self, *args, **kwargs):
@@ -121,17 +121,17 @@ class RegistrationForm(forms.ModelForm):
             )
         )
 
-        self.fields['your_work'] = forms.CharField(
-            max_length=1000,required=True,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'your_work',
-                       'class': 'form-control',
-                       'id': 'your_work',
-                       'onblur': ''
-                       }
-            )
-        )
+        # self.fields['your_work'] = forms.CharField(
+        #     max_length=1000,required=True,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'your_work',
+        #                'class': 'form-control',
+        #                'id': 'your_work',
+        #                'onblur': ''
+        #                }
+        #     )
+        # )
         self.fields['phone'] = forms.CharField(
             required=True,
             widget=forms.TextInput(
@@ -204,31 +204,31 @@ class RegistrationForm(forms.ModelForm):
                        }
             )
         )
-        self.fields['domain'] = forms.ModelChoiceField(
-            queryset=Domain.objects.all(),
-            initial=Domain.objects.all().first(),
-            required=True,
-            widget=forms.Select(
-                attrs={'class': 'form-control',
-                       'data-val': 'true',
-                       'data-val-required': '*',
-                       'id': 'domain',
-                       'name': 'domain',
-                       }
-            )
-        )
+        # self.fields['domain'] = forms.ModelChoiceField(
+        #     queryset=Domain.objects.all(),
+        #     initial=Domain.objects.all().first(),
+        #     required=True,
+        #     widget=forms.Select(
+        #         attrs={'class': 'form-control',
+        #                'data-val': 'true',
+        #                'data-val-required': '*',
+        #                'id': 'domain',
+        #                'name': 'domain',
+        #                }
+        #     )
+        # )
 
-        self.fields['skills'] = forms.CharField(
-            required=False,
-            widget=forms.TextInput(
-                attrs={'type': 'text',
-                       'name': 'skills',
-                       'class': 'form-control',
-                       'id': 'skills',
-                       'onblur': ''
-                       }
-            )
-        )
+        # self.fields['skills'] = forms.CharField(
+        #     required=False,
+        #     widget=forms.TextInput(
+        #         attrs={'type': 'text',
+        #                'name': 'skills',
+        #                'class': 'form-control',
+        #                'id': 'skills',
+        #                'onblur': ''
+        #                }
+        #     )
+        # )
         self.fields['year'] = forms.ModelChoiceField(
             queryset=Year.objects.filter(active=True),
             initial=Year.objects.filter(active=True).first(),
@@ -341,7 +341,7 @@ class RegistrationForm(forms.ModelForm):
         # github_username = cleaned_data.get('github_username')
         # behance_username = cleaned_data.get('behance_username')
 
-        your_work = cleaned_data.get('your_work')
+        # your_work = cleaned_data.get('your_work')
         
         # if hacker_rank_username:
         #     pattern = re.compile("^_*[a-zA-Z\\d]+[a-zA-z0-9]*$")
@@ -391,18 +391,18 @@ class RegistrationForm(forms.ModelForm):
             if year != str(cleaned_data['roll_no'])[0:2]:
                 raise ValidationError("Year doesn't match with Roll Number")
 
-        if your_work:
-            your_work = your_work.split(',')
-            for link in your_work:
-                link = link.lstrip()
-                link = link.rstrip()
+        # if your_work:
+        #     your_work = your_work.split(',')
+        #     for link in your_work:
+        #         link = link.lstrip()
+        #         link = link.rstrip()
 
-                if (link[:7]).lower()!='http://' and link[:8].lower()!='https://':
-                    link = 'http://'+ link
-                try:
-                    validate_url(link)
-                except ValidationError:
-                    raise ValidationError(f'Your work : {link} is not a valid URL')
+        #         if (link[:7]).lower()!='http://' and link[:8].lower()!='https://':
+        #             link = 'http://'+ link
+        #         try:
+        #             validate_url(link)
+        #         except ValidationError:
+        #             raise ValidationError(f'Your work : {link} is not a valid URL')
  
  
  
