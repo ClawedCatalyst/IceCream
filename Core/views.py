@@ -106,91 +106,91 @@ class SaveContactView(View):
         return JsonResponse(data_to_frontend)
 
 
-class RegistrationView(FormView):
-    template_name = 'registration.html'
+# class RegistrationView(FormView):
+#     template_name = 'registration.html'
 
-    success_url = reverse_lazy('home')
+#     success_url = reverse_lazy('home')
 
-    form_class = RegistrationForm
+#     form_class = RegistrationForm
 
-    event = Event.objects.filter(active=True).first()
+#     event = Event.objects.filter(active=True).first()
 
-    def post(self, request, *args, **kwargs):
-        alert = ''
-        form = RegistrationForm(request.POST)
+#     def post(self, request, *args, **kwargs):
+#         alert = ''
+#         form = RegistrationForm(request.POST)
 
-        if form.is_valid():
-            event_receiver_email = form.cleaned_data['college_email']
-            person = form.cleaned_data['name']
-            registration = form.save()
+#         if form.is_valid():
+#             event_receiver_email = form.cleaned_data['college_email']
+#             person = form.cleaned_data['name']
+#             registration = form.save()
 
-            # allowed = False
+#             # allowed = False
 
-            # try:
-            #     allowed = (EmailContent.objects.get(event=self.event)).mail_allowed
-            # except EmailContent.DoesNotExist:
-            #     pass
-            allowed = True
+#             # try:
+#             #     allowed = (EmailContent.objects.get(event=self.event)).mail_allowed
+#             # except EmailContent.DoesNotExist:
+#             #     pass
+#             allowed = True
 
-            if allowed:
-                content = EmailContent.objects.get(event=self.event)
-                # all_files = EmailAttachment.objects.filter(event=self.event)
+#             if allowed:
+#                 content = EmailContent.objects.get(event=self.event)
+#                 # all_files = EmailAttachment.objects.filter(event=self.event)
 
-                subject = content.subject
-                message = render_to_string('registration-response-email.html', {
-                    'content': content,
-                    'event': self.event,
-                    'name': person,
-                })
+#                 subject = content.subject
+#                 message = render_to_string('registration-response-email.html', {
+#                     'content': content,
+#                     'event': self.event,
+#                     'name': person,
+#                 })
                 
-                from_mail = EMAIL_HOST_USER
-                # to_mail = ['ankit1911006@akgec.ac.in']
-                to_mail = [event_receiver_email]
+#                 from_mail = EMAIL_HOST_USER
+#                 # to_mail = ['ankit1911006@akgec.ac.in']
+#                 to_mail = [event_receiver_email]
 
-                # mail = EmailMessage(subject, message, from_mail, to_mail)
-                mail = EmailMessage(subject, message, from_mail, to_mail)
-                mail.content_subtype = "html"
-                mail.mixed_subtype = 'related'
+#                 # mail = EmailMessage(subject, message, from_mail, to_mail)
+#                 mail = EmailMessage(subject, message, from_mail, to_mail)
+#                 mail.content_subtype = "html"
+#                 mail.mixed_subtype = 'related'
 
-               # image_sub_type = (str(self.event.pic_path).split('.'))[-1]
-               # event_image = MIMEImage(self.event.pic_path.read(), _subtype=image_sub_type)
-               # event_image.add_header('Content-ID', '<{}>'.format(self.event.pic_path))
-               # mail.attach(event_image)
+#                # image_sub_type = (str(self.event.pic_path).split('.'))[-1]
+#                # event_image = MIMEImage(self.event.pic_path.read(), _subtype=image_sub_type)
+#                # event_image.add_header('Content-ID', '<{}>'.format(self.event.pic_path))
+#                # mail.attach(event_image)
 
-                # for single_file in all_files:
-                #     mail.attach(filename=single_file.name,
-                #                 content=single_file.files.read())
-                #adding mail sent status
-                try:
-                    mail.send(fail_silently=False)
-                    registration.mail_sent_status = True
-                    registration.save()
-                except:
-                    pass
+#                 # for single_file in all_files:
+#                 #     mail.attach(filename=single_file.name,
+#                 #                 content=single_file.files.read())
+#                 #adding mail sent status
+#                 try:
+#                     mail.send(fail_silently=False)
+#                     registration.mail_sent_status = True
+#                     registration.save()
+#                 except:
+#                     pass
                 
                 
-                ##############
-            messages.add_message(request, messages.SUCCESS,
-                                 "Please check your email.")
-            return redirect(reverse_lazy('registration'))
-        else:
-            if '__all__' in dict(form.errors):
-                alert = dict(form.errors)['__all__']
-            return render(request, 'registration.html', {'form': form, 'event': self.event, 'alert':alert})
+#                 ##############
+#             messages.add_message(request, messages.SUCCESS,
+#                                  "Please check your email.")
+#             return redirect(reverse_lazy('registration'))
+#         else:
+#             if '__all__' in dict(form.errors):
+#                 alert = dict(form.errors)['__all__']
+#             return render(request, 'registration.html', {'form': form, 'event': self.event, 'alert':alert})
 
-    def get(self, request, *args, **kwargs):
-        if self.event:
-            form = self.form_class()
+#     def get(self, request, *args, **kwargs):
+#         if self.event:
+#             form = self.form_class()
 
-            context = {
-                'form': form,
-                'event': self.event
-            }
-            return render(request, 'registration.html', context)
-        else:
-            messages.add_message(request, messages.SUCCESS,
-                                 "Registrations for event are not active!")
-            return redirect(reverse_lazy('home'))
+#             context = {
+#                 'form': form,
+#                 'event': self.event
+#             }
+#             return render(request, 'registration.html', context)
+#         else:
+#             messages.add_message(request, messages.SUCCESS,
+#                                  "Registrations for event are not active!")
+#             return redirect(reverse_lazy('home'))
 
 
 class BlogView(View):
