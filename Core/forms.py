@@ -396,8 +396,8 @@ class RegistrationForm(forms.ModelForm):
             college_email = college_email.lower()
             email_username = str(college_email).split('2')[0]
             
-            if student_name.__contains__(str(email_username)) == False:
-                raise ValidationError("Student name doesn't match with the student name in Email.")
+            # if student_name.__contains__(str(email_username)) == False:
+            #     raise ValidationError("Student name doesn't match with the student name in Email.")
             if college_email.__contains__(str(student_number)) == False:
                 raise ValidationError("Student number doesn't match with the student number in Email.")
             
@@ -435,7 +435,7 @@ class RegistrationForm(forms.ModelForm):
         # regex_student = "^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$";    
 
         # workshop registration for first year
-        regex_student = "^(22)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})$";    
+        regex_student = "^(23)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})$";    
         pattern_student = re.compile(regex_student)
 
         if student_number:
@@ -446,7 +446,7 @@ class RegistrationForm(forms.ModelForm):
 
         # Check if college email contains the student number
         regex_college_email1= f"^[a-zA-Z]+({str(student_number)})(\@akgec\.ac\.in)$"
-        regex_college_email2= "^[a-zA-Z]+(22)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})(@akgec\.ac\.in)$"
+        regex_college_email2= "^[a-zA-Z]+(23)(00|1[0123]|15[34]|16[49]|31|40)([0-9]{3})(@akgec\.ac\.in)$"
         pattern_college_email1= re.compile(regex_college_email1)
         pattern_college_email2= re.compile(regex_college_email2)
 

@@ -175,7 +175,11 @@ def student_number_validator(value):
         raise ValidationError(
             'Student number already registered!'
         )
+class Gender(models.Model):
+    name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
 class Registration(models.Model):
     # experience_choices = [
     #     ('no','No Experience'),
@@ -191,8 +195,8 @@ class Registration(models.Model):
     roll_no = models.CharField(max_length=13, null=True, blank=True)
     student_number = models.CharField(max_length=10, unique=True)
     phone = models.CharField(max_length=10, null=False)
-    branch = models.ForeignKey('Branch',on_delete=models.CASCADE)
-    gender = models.ForeignKey('Gender',default=1,related_name='registrations',on_delete=models.CASCADE)
+    branch = models.ForeignKey(Branch,on_delete=models.CASCADE)
+    gender = models.ForeignKey(Gender,default=1,related_name='gender_student',on_delete=models.CASCADE)
     # year = models.ForeignKey('Year',default=2,on_delete=models.CASCADE)
     # domain = models.ForeignKey('Domain',default=1,related_name='registrations',on_delete=models.CASCADE)
     # Default Year is 1 for SI Workshop
@@ -233,11 +237,7 @@ class Domain(models.Model):
     def __str__(self):
         return self.name
 
-class Gender(models.Model):
-    name = models.CharField(max_length=255)
 
-    def __str__(self):
-        return self.name
 
 
 class ContactInfo(models.Model):
