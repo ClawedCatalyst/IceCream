@@ -435,7 +435,7 @@ class RegistrationForm(forms.ModelForm):
         # regex_student = "^(22|21)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})[-]?[mdlMDL]?$";    
 
         # workshop registration for first year
-        regex_student = "^(23)(00|10|1[123]|15[34]|16[49]|31|40)([0-9]{3})$";    
+        regex_student = "^(23)(00|10|1[123]|15[34]|16[49]|31|40|21)([0-9]{3})$";    
         pattern_student = re.compile(regex_student)
 
         if student_number:
