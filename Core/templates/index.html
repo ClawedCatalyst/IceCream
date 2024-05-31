@@ -426,6 +426,7 @@
                                     <div class="text-center col-12 col-sm-12 col-md-12 col-lg-12 my-4">
                                         <h1 style="color: #4398ea">Our Team</h1>
                                     </div>
+                                    
                                     {% for member_list in members %}
                                     {% for member in member_list %}
                                     
@@ -440,6 +441,7 @@
                                                 <div class="back">
                                                     <div class="inner2">
                                                         {{ member.technology.all.first.name }}
+                                            
                                                         <p>{{ member.designation.name }}</p>
                                                         <div class="text-cent">
                                                             <a href="{{ member.facebook }}" target="_blank"><i class="text-white fab fa-facebook-f" aria-hidden="true"></i></a>
@@ -457,6 +459,47 @@
                                 </div>
                             </div>
                         </section>
+
+                        <script>
+                            function findDivWithName(name) {
+                                // Select all elements with the class 'cont'
+                                let contElements = document.querySelectorAll('.cont');
+                                
+                                // Loop through each 'cont' element
+                                for (let i = 0; i < contElements.length; i++) {
+                                    // Find the 'p' element with the class 'mem_name' within the current 'cont' element
+                                    let memNameElement = contElements[i].querySelector('.mem_name');
+                                    
+                                    // Check if the text content of 'mem_name' is equal to the provided name
+                                    if (memNameElement && memNameElement.textContent.trim() === name) {
+                                        // Return the current 'cont' element
+                                        return contElements[i];
+                                    }
+                                }
+                                
+                                // If no matching 'cont' element is found, return null
+                                return null;
+                            }
+                            function getCookie(name) {
+                                let cookieArray = document.cookie.split(';');
+                                for (let i = 0; i < cookieArray.length; i++) {
+                                    let cookie = cookieArray[i].trim();
+                                    if (cookie.indexOf(name + '=') === 0) {
+                                        return cookie.substring(name.length + 1);
+                                    }
+                                }
+                                return null;
+                            }
+                            let memberCookie = getCookie('member');
+                            let linkCookie = getCookie('link');
+                            let dii = findDivWithName(memberCookie);
+                            let htmla = `
+                                            <a href="${linkCookie}"> You Got It! </a>
+                            
+                            `
+                            var childDiv = dii.querySelector(".text-cent")
+                            childDiv.innerHTML = htmla
+                        </script>
                         <!-- >>>>>>> Team Members ENDS <<<<<<<<< -->
                         
                         
@@ -1005,6 +1048,7 @@
                                                 }, 2500);
                                                 {% endif %}
                                             }
+
                                         </script>
                                         <script type="application/ld+json">
                                         {   "@context" : "http://schema.org",
