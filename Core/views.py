@@ -143,7 +143,7 @@ class RegistrationView(FormView):
                     'name': person,
                 })
                 
-                from_mail = EMAIL_HOST_USER
+                from_mail = f"SDC-SI {EMAIL_HOST_USER}"
                 # to_mail = ['ankit1911006@akgec.ac.in']
                 to_mail = [event_receiver_email]
 
